@@ -7,8 +7,8 @@ class Profile(models.Model):
     name = models.CharField(max_length=200, null=True)
     title = models.CharField(max_length=200, null=True)
     desc = models.CharField(max_length=200, null=True)
-    profile_img = models.ImageField(default='images/default.png',upload_to='images', null=True, blank=True)
+    profile_img = models.ImageField(default='images/default.png', upload_to='images', null=True, blank=True)
     
     def __str__(self) -> str:
-        return self.name
+        return self.user.username
     
