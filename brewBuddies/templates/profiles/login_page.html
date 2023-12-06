@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if messages %}
+<div class="notification container bg-danger text-white">
+  {% for message in messages %}
+  <p>{{ message }}</p>
+  {% endfor %}
+{% endif %}
+</div>
         <div class="container w-25 mt-5 mx-auto border rounded">
           <h1 class="signup-heading text-center">Log in</h1>
           <hr>
