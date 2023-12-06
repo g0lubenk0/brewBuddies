@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="profile-photo-container">
+        <img src="{{user.profile.profile_img.url}}" alt="User Image" width="100px" height='100px' srcset="">
+    </div>
+
+
+    <div class="user-content-container">
+        <p class="username">{{ user.username }}</p>
+        <p class="user-title">{{ user.profile.title }}</p>
+        <p class="user-desc">{{ user.profile.desc }}</p>
+        <div class="profile-edit-link-container">
+            <a href="{% url "profile" %}">Edit</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+       
