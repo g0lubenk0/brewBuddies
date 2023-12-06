@@ -9,7 +9,7 @@ from .decorators import unauthenticated_user
 
 @login_required(login_url='login')
 def index(request):
-    return render(request, 'profiles/home.html')
+    return render(request, 'profiles/profile.html')
 
 
 @login_required(login_url='login')
@@ -24,7 +24,7 @@ def profile(request):
     else:
         form = ProfileForm(instance=request.user.profile)
     context = {'form':form}
-    return render(request, 'profiles/profile.html', context)
+    return render(request, 'profiles/edit_profile.html', context)
 
 @unauthenticated_user
 def login_user(request):
@@ -50,11 +50,9 @@ def register_user(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.info('Account is created.')
             return redirect('login')
         else:
             context = {'form':form}
-            messages.info('Invalid credentials.')
             return render(request, 'profiles/register_page.html', context)
     
     context = {'form':form}

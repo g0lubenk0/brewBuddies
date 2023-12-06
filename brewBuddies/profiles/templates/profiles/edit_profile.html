@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form class="container" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="profile-photo-container profile-photo-form-container">
+        <p class="profile-page-heading">Edit your profile</p>
+        <img src="{{ user.profile.profile_img.url}}" alt="user-image" width="" srcset="">
+        <div class="form-group">
+            {{ form.profile_img }}
+        </div>
+    </div>
+    <div class="user-content-container user-profile-form-container">
+        <ul class="form-group">
+            <li class="name">
+               <label for="user-name">Your Name</label>
+               {{ form.name }}
+            </li>
+            <li class="title">
+               <label for="user-title">Your title</label>
+               {{ form.title }}
+            </li>
+            <li class="desc">
+               <label for="user-desc">Description</label>
+               {{ form.desc }}
+            </li>
+        </ul>
+        <button class="btn btn-primary profile-save-button"> Save </button>
+    </div>
+</form>
+
+{% endblock content %}
