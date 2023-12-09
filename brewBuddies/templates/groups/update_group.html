@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Update Group</h2>
+  <form method="post" action="{% url 'update_group' group.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Group</button>
+  </form>
+  <a href="{% url 'group_detail' group.id %}">Back to Group Detail</a>
+{% endblock %}

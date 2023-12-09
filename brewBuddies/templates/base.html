@@ -27,17 +27,8 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><a class="dropdown-item" href="{% url "group_list" %}">List</a></li>
-                  <li><a class="dropdown-item" href="{% url "user_groups_list" %}">My List</a></li>
-                  <li><a class="dropdown-item" href="{% url "create" %}">Create</a></li>
-                </ul>
-              </div>
-              <div class="dropdown mx-3">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Buddies
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">List</a></li>
-                  <li><a class="dropdown-item" href="#">My List</a></li>
+                  <li><a class="dropdown-item" href="{% url "user_group_list" %}">My List</a></li>
+                  <li><a class="dropdown-item" href="{% url "create_group" %}">Create</a></li>
                 </ul>
               </div>
               <li class="nav-item mx-3">

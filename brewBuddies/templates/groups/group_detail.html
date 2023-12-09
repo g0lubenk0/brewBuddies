@@ -1,1 +1,20 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ group.name }}</h2>
+  <p>{{ group.description }}</p>
+  <p>Location: {{ group.place }} ({{ group.latitude }}, {{ group.longitude }})</p>
+  <p>Tags: {{ group.tags }}</p>
+  <p>Creator: {{ group.creator.username }}</p>
+
+  {% if user in group.members.all %}
+    <p>You are a member of this group.</p>
+    <a href="{% url 'leave_group' group.id %}">Leave Group</a>
+  {% else %}
+    <a href="{% url 'user_group_list' %}">Back to My Groups</a>
+  {% endif %}
+
+  {% if user == group.creator %}
+    <a href="{% url 'update_group' group.id %}">Update Group</a>
+  {% endif %}
+{% endblock %}
