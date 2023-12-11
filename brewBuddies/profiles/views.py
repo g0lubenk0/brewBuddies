@@ -7,10 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
 
-@login_required(login_url='login')
 def index(request):
-    return render(request, 'profiles/profile.html')
-
+    return redirect('map')
 
 @login_required(login_url='login')
 def profile(request):
@@ -63,3 +61,4 @@ def logout_user(request):
     logout(request)
     messages.info(request, 'You logged put successfully')
     return redirect('login')
+
