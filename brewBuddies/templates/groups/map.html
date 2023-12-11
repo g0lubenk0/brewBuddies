@@ -1,0 +1,35 @@
+<!-- group_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Groups Map</h2>
+<div id="map" style="height: 700px;"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<script>
+  function initMap() {
+    var map = L.map('map').setView([55.755735, 37.620996], 13);  // Set initial map coordinates and zoom level
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    {% for group in groups %}
+      var lat = {{ group.latitude }};
+      var lng = {{ group.longitude }};
+      var place = "{{ group.place }}";
+      var name = "{{ group.name }}";
+
+      var marker = L.marker([lat, lng]).addTo(map);
+      marker.bindPopup(`<p>Название: ${name}</p><p>Место: ${place} </p><p><a href="{% url 'group_detail' group.id %}">Join</a></p>`);
+    {% endfor %}
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initMap();
+  });
+</script>
+{% endblock %}
