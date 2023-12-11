@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-ASGI_APPLICATION = "brewBuddies.routing.groups"
+ASGI_APPLICATION = "brewBuddies.asgi.application"
 # Application definition 
 
 INSTALLED_APPS = [
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'channels',
     'profiles',
     'groups',
-    'reset_migrations',
 ]
 
 
@@ -54,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'channels.middleware.ChannelsMiddleware',
 ]
 
 ROOT_URLCONF = 'brewBuddies.urls'
@@ -90,6 +88,8 @@ DATABASES = {
     }
 }
 
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

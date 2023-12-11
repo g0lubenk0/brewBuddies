@@ -6,6 +6,7 @@ from .forms import GroupForm
 @login_required
 def group_list(request):
     groups = Group.objects.all()
+    print(groups)
     return render(request, 'groups/group_list.html', {'groups': groups})
 
 @login_required
@@ -21,10 +22,24 @@ def create_group(request):
             group = form.save(commit=False)
             group.creator = request.user
             group.save()
+            group.members.add(request.user)
             return redirect('group_list')
     else:
         form = GroupForm()
     return render(request, 'groups/create_group.html', {'form': form})
+
+@login_required
+def join_group(request, group_id):
+    group = get_object_or_404(Group, pk=group_id)
+    if request.user not in group.members.all():
+        group.members.add(request.user)
+    return redirect('user_group_list')
+
+@login_required
+def delete_group(request, group_id):
+    group = get_object_or_404(Group, pk=group_id, creator=request.user)
+    group.delete()
+    return redirect('group_list')
 
 @login_required
 def update_group(request, group_id):
@@ -46,10 +61,21 @@ def leave_group(request, group_id):
 
 @login_required
 def user_group_list(request):
-    groups = request.user.joined_groups.all()
+    groups = Group.objects.all()
     return render(request, 'groups/user_group_list.html', {'groups': groups})
 
 @login_required
 def group_chat(request, group_id):
     group = get_object_or_404(Group, id=group_id)
     return render(request, 'groups/group_chat.html', {'group': group})
+
+@login_required
+def map(request):
+    groups = Group.objects.all()
+    return render(request, 'groups/map.html', {'groups': groups})
+
+@login_required
+def delete_group(request, group_id):
+    group = get_object_or_404(Group, pk=group_id, creator=request.user)
+    group.delete()
+    return redirect('group_list')

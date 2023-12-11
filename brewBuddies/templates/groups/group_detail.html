@@ -11,10 +11,12 @@
     <p>You are a member of this group.</p>
     <a href="{% url 'leave_group' group.id %}">Leave Group</a>
   {% else %}
-    <a href="{% url 'user_group_list' %}">Back to My Groups</a>
+    <a href="{% url 'join_group' group.id%}">Join Group</a>
+    <a href="{% url 'group_list' %}">Back to Groups</a>
   {% endif %}
 
   {% if user == group.creator %}
     <a href="{% url 'update_group' group.id %}">Update Group</a>
+    <a href="{% url 'delete_group' group.id %}">Delete Group</a>
   {% endif %}
 {% endblock %}

@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: g0lubenk0@yandex.ru
+Date: Mon, 11 Dec 2023 19:57:05 -0000
+Message-ID: <170232462517.17048.10007286308912747909@DESKTOP-8PBQOB3>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MQ/bz2fr5-3a74cbb39783942b649d695c719bdba3/
+
+Your username, in case you’ve forgotten: g0lubenk0
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
