@@ -48,6 +48,7 @@ Include these URL patterns in your Django project's main `urls.py` using the `in
 urlpatterns = [
     path('', views.index, name='home'),
     path('accounts/profile/', views.profile, name='profile'),
+    path('accounts/profile/edit', views.profile_edit, name='profile_edit'),
     path('accounts/login/', views.login_user, name='login'),
     path('accounts/register/', views.register_user, name='register'),
     path('accounts/logout/', views.logout_user, name='logout'),
