@@ -35,6 +35,12 @@ Install dependencies:
 pip install -r requirements.txt
 ````
 
+**OR** using Poetry:
+````
+pip install Poetry
+poetry install
+````
+
 Apply database migrations:
 ````
 python manage.py migrate
