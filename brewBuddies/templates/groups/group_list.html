@@ -1,21 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Group List</h2>
-  <ul>
+<h2>Group List</h2>
+
+<button type="button" class="btn btn-success mx-1"><a href="{% url 'create_group' %}" class="link-offset-2 link-underline link-underline-opacity-0 text-white">New group</a></button>
+<table class="table table-bordered my-1 mx-1">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Tags</th>
+      <th scope="col">Place</th>
+      <th scope="col">Desc</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for group in groups %}
-      <li><a href="{% url 'group_detail' group.id %}">{{ group.name }}</a></li>
+      <tr>
+        <th scope="row">{{ group.id }}</th>
+        <td><a href="{% url 'group_detail' group.id %}" class="text-black link-offset-2 link-underline link-underline-opacity-0">{{ group.name }}</a></td>
+        <td>{{group.tags}}</td>
+        <td>{{group.place}}</td>
+        <td>{{group.description}}</td>
+      <td>
+      {% if user in group.members.all %}
+        <button type="button" class="btn btn-danger mx-1"><a href="{% url 'leave_group' group.id %}" class="link-offset-2 link-underline link-underline-opacity-0 text-white">Leave Group</a></button>
+      {% else %}
+        <button type="button" class="btn btn-success mx-1"><a href="{% url 'join_group' group.id%}" class="link-offset-2 link-underline link-underline-opacity-0 text-white">Join Group</a></button>
+      {% endif %}
+      {% if user == group.creator %}
+        <button type="button" class="btn btn-warning mx-1"><a href="{% url 'update_group' group.id %}" class="link-offset-2 link-underline link-underline-opacity-0 text-white">Update Group</a></button>
+        <button type="button" class="btn btn-danger mx-1"><a href="{% url 'delete_group' group.id %}" class="link-offset-2 link-underline link-underline-opacity-0 text-white">Delete Group</a></button>
+      {% endif %}
+      </td>
+      </tr>
     {% endfor %}
-  </ul>
-  <a href="{% url 'create_group' %}">Create a new group</a>
+  </tbody>
+</table>
+  
+
 
   <h2>My Groups</h2>
-  <ul>
-    {% for group in groups %}
-      {% if user in group.members.all %}
-        <li><a href="{% url 'group_detail' group.id %}">{{ group.name }}</a></li>
-      {% endif %}
-    {% endfor %}
-  </ul>
+  <table class="table table-bordered my-1 mx-1">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Tags</th>
+        <th scope="col">Place</th>
+        <th scope="col">Desc</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for group in groups %}
+        {% if user in group.members.all %}
+        <th scope="row">{{ group.id }}</th>
+        <td><a href="{% url 'group_detail' group.id %}" class="text-black link-offset-2 link-underline link-underline-opacity-0">{{ group.name }}</a></td>
+        <td>{{group.tags}}</td>
+        <td>{{group.place}}</td>
+        <td>{{group.description}}</td>
+        <td>
+        <button type="button" class="btn btn-danger mx-1"><a href="{% url 'leave_group' group.id %}" class="link-offset-2 link-underline link-underline-opacity-0 text-white">Leave Group</a></button>
+          {% if user == group.creator %}
+            <button type="button" class="btn btn-warning mx-1"><a href="{% url 'update_group' group.id %}" class="link-offset-2 link-underline link-underline-opacity-0 text-white">Update Group</a></button>
+            <button type="button" class="btn btn-danger mx-1"><a href="{% url 'delete_group' group.id %}" class="link-offset-2 link-underline link-underline-opacity-0 text-white">Delete Group</a></button>
+          {% endif %}
+        {% endif %}
+        </td>
+      {% endfor %}
+    </tbody>
+  </table>
   <a href="{% url 'home' %}">Back to Home</a>
 {% endblock %}
