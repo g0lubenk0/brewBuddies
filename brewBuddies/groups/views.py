@@ -71,7 +71,7 @@ def join_group(request, group_id):
     group = get_object_or_404(Group, pk=group_id)
     if request.user not in group.members.all():
         group.members.add(request.user)
-    return redirect('user_group_list')
+    return redirect('group_list')
 
 @login_required
 def delete_group(request, group_id):
@@ -125,7 +125,7 @@ def leave_group(request, group_id):
     """
     group = get_object_or_404(Group, id=group_id)
     request.user.joined_groups.remove(group)
-    return redirect('user_group_list')
+    return redirect('group_list')
 
 @login_required
 def user_group_list(request):
@@ -139,7 +139,7 @@ def user_group_list(request):
         HttpResponse: Rendered HTML response displaying a list of joined groups.
     """
     groups = Group.objects.all()
-    return render(request, 'groups/user_group_list.html', {'groups': groups})
+    return render(request, 'groups/group_list.html', {'groups': groups})
 
 @login_required
 def group_chat(request, group_id):
