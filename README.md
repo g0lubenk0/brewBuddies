@@ -3,7 +3,7 @@
 BrewBuddies is a social platform that brings beer enthusiasts together. Connect with like-minded individuals, create and join beer-tasting groups, and share your favorite brews.
 
 ## Features
-Group Creation: Users can create beer-tasting groups, providing details such as the group name, location, description, and tags.
+**bold** Group Creation **bold** : Users can create beer-tasting groups, providing details such as the group name, location, description, and tags.
 
 Group Joining/Leaving: Join existing beer-tasting groups or leave those you've joined. Manage your group memberships effortlessly.
 
