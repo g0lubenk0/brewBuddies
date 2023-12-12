@@ -7,6 +7,43 @@ from django.contrib.auth.views import (
     PasswordResetCompleteView,
 )
 
+"""
+URL Patterns for User Authentication and Profile Management
+
+This module defines the URL patterns for various user authentication and profile management views in a Django web application.
+
+URL Patterns:
+- `/`: Home page view (index).
+- `/accounts/profile/`: User profile view (profile).
+- `/accounts/login/`: User login view (login_user).
+- `/accounts/register/`: User registration view (register_user).
+- `/accounts/logout/`: User logout view (logout_user).
+- `/accounts/password_reset/`: Password reset view (PasswordResetView) with associated template (password_reset.html).
+- `/accounts/password_reset/done/`: Password reset done view (PasswordResetDoneView) with associated template (password_reset_done.html).
+- `/accounts/reset/<uidb64>/<token>/`: Password reset confirm view (PasswordResetConfirmView) with associated template (password_reset_confirm.html).
+- `/accounts/reset/done/`: Password reset complete view (PasswordResetCompleteView) with associated template (password_reset_complete.html).
+
+View Functions:
+- `index`: Home page view.
+- `profile`: User profile view.
+- `login_user`: User login view.
+- `register_user`: User registration view.
+- `logout_user`: User logout view.
+
+Note: The views for password reset are provided by Django's built-in PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, and PasswordResetCompleteView.
+
+Usage:
+Include these URL patterns in your Django project's main `urls.py` using the `include` function:
+    ```
+    from django.urls import path, include
+
+    urlpatterns = [
+        # ... other patterns ...
+        path('', include('your_app_name.urls')),
+    ]
+    ```
+
+"""
 
 urlpatterns = [
     path('', views.index, name='home'),
