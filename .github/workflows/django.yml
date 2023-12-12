@@ -30,4 +30,6 @@ jobs:
     - name: Run Tests
       run: |
         cd brewBuddies
+        python manage.py makemigrations
+        python manage.py migrate
         python manage.py test
