@@ -27,6 +27,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pg_isready -h localhost -p 5432
+        systemctl status postgresql
+        systemctl restart postgresql
+
         
     - name: Run Tests
       run: |
