@@ -39,6 +39,11 @@ def index(request):
 
 @login_required(login_url='login')
 def profile(request):
+    return render(request, 'profiles/profile.html')
+
+
+@login_required(login_url='login')
+def profile_edit(request):
     """
     Handles profile editing. If the request method is POST, updates the user's profile with the submitted form data.
     Redirects to the home page on successful update.
@@ -49,7 +54,7 @@ def profile(request):
             form.save()
             username = request.user.username
             messages.success(request, f'{username}, Your profile is updated.')
-            return redirect('/')
+            return redirect('profile')
     else:
         form = ProfileForm(instance=request.user.profile)
     context = {'form':form}
