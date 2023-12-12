@@ -12,7 +12,6 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from .models import Profile
 from django.urls import reverse
-from .forms import CreateUserForm, ProfileForm
 
 class ProfileModelTest(TestCase):
     def setUp(self):
