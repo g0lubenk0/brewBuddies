@@ -1,27 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>{{ group.name }} Chat</h2>
+<div class="container mt-5">
+  <h2 class="text-center">{{ group.name }} Chat</h2>
 
-  <div id="chat-messages" class="mx-auto w-75 h-75" >
-    <!-- Messages will be displayed here -->
+  <div id="chat-messages" class="mx-auto w-75 h-75 border p-4 mb-4" style="overflow-y: scroll; max-height: 300px;">
+      <!-- Messages will be displayed here -->
   </div>
 
-  <form id="chat-form" method="post">
-    {% csrf_token %}
-    <input type="text" id="message-input" placeholder="Type your message">
-    <button type="submit">Send</button>
+  <form id="chat-form" method="post" class="d-flex">
+      {% csrf_token %}
+      <input type="text" id="message-input" class="form-control" placeholder="Type your message">
+      <button type="submit" class="btn btn-primary ml-2">Send</button>
   </form>
+</div>
 
   <script>
     const chatSocket = new WebSocket(
-      'ws://' + window.location.host + '/ws/group/{{ group.id }}/'
+      'ws://' + window.location.host + '/ws/group/{{ group.id }}/chat'
     );
+    
+    this.send = function (message, callback) {
+      this.waitForConnection(function () {
+          ws.send(message);
+          if (typeof callback !== 'undefined') {
+            callback();
+          }
+      }, 1000);
+  };
+  this.waitForConnection = function (callback, interval) {
+      if (ws.readyState === 1) {
+          callback();
+      } else {
+          var that = this;
+          // optional: implement backoff for interval here
+          setTimeout(function () {
+              that.waitForConnection(callback, interval);
+          }, interval);
+      }
+  };
 
     chatSocket.onmessage = function (e) {
       const data = JSON.parse(e.data);
       const messageElement = document.createElement('p');
-      messageElement.textContent = data.message;
+      messageElement.textContent = `${data.username}: ${data.message}`;
       document.querySelector('#chat-messages').appendChild(messageElement);
     };
 

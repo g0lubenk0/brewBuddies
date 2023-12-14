@@ -50,7 +50,8 @@ class GroupChatConsumer(AsyncWebsocketConsumer):
             self.group_name,
             {
                 'type': 'group.message',
-                'message': message
+                'message': message,
+                'username': self.scope['user'].username,
             }
         )
 
@@ -60,7 +61,9 @@ class GroupChatConsumer(AsyncWebsocketConsumer):
         Sends the message to the consumer's WebSocket.
         """
         message = event['message']
+        username = event['username']
 
         await self.send(text_data=json.dumps({
-            'message': message
+            'message': message,
+            'username': username
         }))
