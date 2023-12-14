@@ -50,6 +50,11 @@ Run the development server:
 ````
 python manage.py runserver
 ````
+
+To run with chat, you need to install docker then:
+````
+daphne brewbuddies.asgi:application
+````
 Visit http://localhost:8000/ in your web browser to access BrewBuddies.
 
 ## Usage
