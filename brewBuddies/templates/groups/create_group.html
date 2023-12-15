@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %}Create Group{% endblock %}
 {% block content %}
 <div class="container mt-5">
   <div class="row justify-content-center">
@@ -7,50 +7,58 @@
       <h2 class="mb-4">Create a New Group</h2>
       <form method="post" action="{% url 'create_group' %}" class="needs-validation" novalidate>
         {% csrf_token %}
+        
         <div class="mb-3">
-          {{ form.title.label_tag }}
-          {{ form.title }}
+          <label for="{{ form.name.id }}" class="form-label">Title</label>
+          {{ form.name }}
           <div class="invalid-feedback">
-            {{ form.title.errors }}
+            {{ form.name.errors }}
           </div>
         </div>
+
         <div class="mb-3">
-          {{ form.place.label_tag }}
+          <label for="{{ form.place.id }}" class="form-label">{{ form.place.label }}</label>
           {{ form.place }}
           <div class="invalid-feedback">
             {{ form.place.errors }}
           </div>
         </div>
+
         <div class="mb-3">
-          {{ form.longitude.label_tag }}
+          <label for="{{ form.longitude.id }}" class="form-label">{{ form.longitude.label }}</label>
           {{ form.longitude }}
           <div class="invalid-feedback">
             {{ form.longitude.errors }}
           </div>
         </div>
+
         <div class="mb-3">
-          {{ form.latitude.label_tag }}
+          <label for="{{ form.latitude.id }}" class="form-label">{{ form.latitude.label }}</label>
           {{ form.latitude }}
           <div class="invalid-feedback">
             {{ form.latitude.errors }}
           </div>
         </div>
+
         <div class="mb-3">
-          {{ form.description.label_tag }}
+          <label for="{{ form.description.id }}" class="form-label">{{ form.description.label }}</label>
           {{ form.description }}
           <div class="invalid-feedback">
             {{ form.description.errors }}
           </div>
         </div>
+
         <div class="mb-3">
-          {{ form.tags.label_tag }}
+          <label for="{{ form.tags.id }}" class="form-label">{{ form.tags.label }}</label>
           {{ form.tags }}
           <div class="invalid-feedback">
             {{ form.tags.errors }}
           </div>
         </div>
+
         <button type="submit" class="btn btn-primary">Create Group</button>
       </form>
+
       <a href="{% url 'group_list' %}" class="mt-3 d-block">Back to Group List</a>
     </div>
   </div>
