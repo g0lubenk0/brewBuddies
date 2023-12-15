@@ -79,7 +79,7 @@ We welcome contributions to make BrewBuddies even better! Feel free to open issu
 Fork the repository. Clone your forked repository:
 
 ````
-git clone https://github.com/your-username/brew-buddies.git
+git clone https://github.com/your-username/brewBuddies.git
 ````
 
 Create a new branch for your changes:
