@@ -22,7 +22,7 @@ BrewBuddies is a social platform that brings beer enthusiasts together. Connect 
 ## Installation
 Clone the repository:
 ````
-git clone https://github.com/your-username/brew-buddies.git
+git clone https://github.com/your-username/brewBuddies.git
 ````
 
 Navigate to the project directory:
