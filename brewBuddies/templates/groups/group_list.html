@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
-
+{% block title %}Group List{% endblock %}
 {% block content %}
 <h2>Group List</h2>
+
+<form method="get" action="{% url 'group_list' %}" class="mb-3">
+  <div class="input-group">
+    <input type="text" name="q" class="form-control" placeholder="Search groups" value="{{ query }}">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+</form>
 
 <button type="button" class="btn btn-success mx-1"><a href="{% url 'create_group' %}" class="link-offset-2 link-underline link-underline-opacity-0 text-white">New group</a></button>
 <table class="table table-bordered my-1 mx-1">
@@ -72,5 +79,4 @@
       {% endfor %}
     </tbody>
   </table>
-  <a href="{% url 'home' %}">Back to Home</a>
 {% endblock %}
