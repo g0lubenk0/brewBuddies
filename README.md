@@ -30,10 +30,6 @@ Navigate to the project directory:
 cd brewBuddies
 ````
 
-Try .venv:
-````
-.venv/Scripts/activate.ps1
-````
 Install dependencies:
 ````
 pip install -r requirements.txt
