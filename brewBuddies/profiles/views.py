@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
+from .models import Profile
 
 """
 Profile Views Module
@@ -40,6 +41,17 @@ def index(request):
 @login_required(login_url='login')
 def profile(request):
     return render(request, 'profiles/profile.html')
+
+@login_required
+def search_profiles(request):
+    query = request.GET.get('q')
+
+    if query:
+        profiles = Profile.objects.search(query)
+    else:
+        profiles = Profile.objects.all()
+
+    return render(request, 'profiles/user_search.html', {'profiles': profiles, 'query': query})
 
 
 @login_required(login_url='login')
