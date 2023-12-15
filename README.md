@@ -27,7 +27,7 @@ git clone https://github.com/your-username/brewBuddies.git
 
 Navigate to the project directory:
 ````
-cd brew-buddies
+cd brewBuddies
 ````
 
 Try .venv:
