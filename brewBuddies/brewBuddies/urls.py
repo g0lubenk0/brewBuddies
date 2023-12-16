@@ -19,6 +19,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.staticfiles.views import serve
+
+
+def return_static(request, path, insecure=True, **kwargs):
+  return serve(request, path, insecure, **kwargs)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('groups/', include('groups.urls')),

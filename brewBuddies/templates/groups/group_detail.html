@@ -1,22 +1,30 @@
 {% extends 'base.html' %}
+
 {% block title %}{{ group.name }} - Details{% endblock %}
+
 {% block content %}
-  <h2>{{ group.name }}</h2>
-  <p>{{ group.description }}</p>
-  <p>Location: {{ group.place }} ({{ group.latitude }}, {{ group.longitude }})</p>
-  <p>Tags: {{ group.tags }}</p>
-  <p>Creator: {{ group.creator.username }}</p>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h2>{{ group.name }}</h2>
+        <p>{{ group.description }}</p>
+        <p>Location: {{ group.place }} ({{ group.latitude }}, {{ group.longitude }})</p>
+        <p>Tags: {{ group.tags }}</p>
+        <p>Creator: {{ group.creator.username }}</p>
 
-  {% if user in group.members.all %}
-    <p>You are a member of this group.</p>
-    <a href="{% url 'leave_group' group.id %}">Leave Group</a>
-  {% else %}
-    <a href="{% url 'join_group' group.id%}">Join Group</a>
-    <a href="{% url 'group_list' %}">Back to Groups</a>
-  {% endif %}
+        {% if user in group.members.all %}
+          <p>You are a member of this group.</p>
+          <a href="{% url 'leave_group' group.id %}" class="btn btn-danger">Leave Group</a>
+        {% else %}
+          <a href="{% url 'join_group' group.id %}" class="btn btn-success">Join Group</a>
+          <a href="{% url 'group_list' %}" class="btn btn-primary">Back to Groups</a>
+        {% endif %}
 
-  {% if user == group.creator %}
-    <a href="{% url 'update_group' group.id %}">Update Group</a>
-    <a href="{% url 'delete_group' group.id %}">Delete Group</a>
-  {% endif %}
+        {% if user == group.creator %}
+          <a href="{% url 'update_group' group.id %}" class="btn btn-warning">Update Group</a>
+          <a href="{% url 'delete_group' group.id %}" class="btn btn-danger">Delete Group</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 {% endblock %}
