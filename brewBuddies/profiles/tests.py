@@ -98,14 +98,14 @@ class ProfileModelTest(TestCase):
         """
         # Test updating profile fields
         profile = Profile.objects.get(user=self.user)
-        profile.name = 'John Doe'
-        profile.title = 'Software Engineer'
+        profile.name = 'Victor Kostin'
+        profile.title = 'Tester'
         profile.desc = 'A passionate developer'
         profile.save()
 
         updated_profile = Profile.objects.get(user=self.user)
-        self.assertEqual(updated_profile.name, 'John Doe')
-        self.assertEqual(updated_profile.title, 'Software Engineer')
+        self.assertEqual(updated_profile.name, 'Victor Kostin')
+        self.assertEqual(updated_profile.title, 'Tester')
         self.assertEqual(updated_profile.desc, 'A passionate developer')
 
     def test_profile_img_upload(self):
